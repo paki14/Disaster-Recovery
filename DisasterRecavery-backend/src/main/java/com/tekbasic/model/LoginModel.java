@@ -17,7 +17,7 @@ public class LoginModel {
 
     @NotNull
     @Size(min = 1)
-    private String userName;
+    private String username;
     @NotNull
     @Size(min = 1)
     private String password;

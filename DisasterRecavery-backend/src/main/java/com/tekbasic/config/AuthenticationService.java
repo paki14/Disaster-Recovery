@@ -36,14 +36,14 @@ public class AuthenticationService {
 
         logger.info("AuthService");
 
-        User user = userRepository.findByUsername(loginModel.getUserName()).orElseThrow(
+        User user = userRepository.findByUsername(loginModel.getUsername()).orElseThrow(
                 () -> new UsernameNotFoundException("User Not Present")
         );
 
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginModel.getUserName(),
+                        loginModel.getUsername(),
                         loginModel.getPassword()
                 )
         );

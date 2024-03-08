@@ -44,6 +44,10 @@ public class UserController {
 	public ResponseEntity<AuthenticationResponse> loginCredientials(@RequestBody LoginModel login){
 		return ResponseEntity.ok( authenticationService.authenticate(login));
 	}
+//	public Optional<User> getLogin(@RequestBody LoginModel login){
+//		System.out.println(login.getUsername());
+//		return userService.getLoginUSer(login.getUsername());
+//	}
 	@PutMapping("/editUser/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void editUser(@RequestBody User user,@PathVariable("id")int id) {
