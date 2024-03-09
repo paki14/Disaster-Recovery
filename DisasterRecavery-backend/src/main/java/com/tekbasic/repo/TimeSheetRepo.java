@@ -1,5 +1,6 @@
 package com.tekbasic.repo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,6 +25,7 @@ public interface TimeSheetRepo extends JpaRepository<TimeSheet, Integer> {
 	public void updateStatus(@Param("status")Status status,@Param("id")int id );
 	@Query("from TimeSheet t where t.status=:status")
 	public List<TimeSheet>findByStatus(@Param("status")Status status);
-	
-	public void updateTimeSheet(TimeSheetModel timeSheetModel, int id);
+	@Modifying
+	@Query("update TimeSheet t set t.date=:date where t.id=:id")
+	public void updateTimeSheet(@Param("date")LocalDate date,@Param("id") int id);
 }

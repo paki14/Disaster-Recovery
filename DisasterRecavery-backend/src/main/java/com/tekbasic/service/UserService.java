@@ -16,4 +16,5 @@ public interface UserService {
 	public void editUser(User user,int id);
 	public void deleteUser(int id);
 	public Optional<User> getLoginUSer(String userName);
+	public int updatePassword(UpdatePasswordModel updatePasswordModel);
 }

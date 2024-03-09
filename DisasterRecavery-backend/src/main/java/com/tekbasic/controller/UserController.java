@@ -48,6 +48,14 @@ public class UserController {
 //		System.out.println(login.getUsername());
 //		return userService.getLoginUSer(login.getUsername());
 //	}
+	@PutMapping("/updatePassword")
+	public String updatePassWord(@RequestBody UpdatePasswordModel updatePasswordModel) {
+		int x=userService.updatePassword(updatePasswordModel);
+		if(x!=0) {
+			return "password updated ";
+		}else return "Username or Email mismatch";
+		
+	}
 	@PutMapping("/editUser/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void editUser(@RequestBody User user,@PathVariable("id")int id) {

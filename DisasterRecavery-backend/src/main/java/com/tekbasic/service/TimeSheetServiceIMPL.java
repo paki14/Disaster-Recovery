@@ -1,5 +1,6 @@
 package com.tekbasic.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collector;
@@ -80,7 +81,7 @@ public class TimeSheetServiceIMPL implements TimeSheetService {
 	}
 	@Override
 	public void updateTimeSheet(TimeSheetModel timeSheetModel, int id) {
-		timeSheetRepo.updateTimeSheet(timeSheetModel , id);
+		timeSheetRepo.updateTimeSheet(timeSheetModel.getDate() , id);
 	}
 
 }
