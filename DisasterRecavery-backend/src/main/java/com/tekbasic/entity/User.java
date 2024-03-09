@@ -1,21 +1,22 @@
 package com.tekbasic.entity;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -44,8 +45,7 @@ public class User implements UserDetails{
 	private Role role;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		 return List.of(new SimpleGrantedAuthority(role.getRole()));
-		  
+		return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
 	}
 	@Override
 	public String getPassword() {

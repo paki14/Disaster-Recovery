@@ -1,4 +1,4 @@
-package com.tekbasic.model;
+package com.tekbasic.repo;
 
 import lombok.Data;
 import lombok.Getter;

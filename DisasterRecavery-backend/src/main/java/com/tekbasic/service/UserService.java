@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.tekbasic.entity.User;
-import com.tekbasic.model.UpdatePasswordModel;
+import com.tekbasic.repo.UpdatePasswordModel;
 @Service
 public interface UserService {
 

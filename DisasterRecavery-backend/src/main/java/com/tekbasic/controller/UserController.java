@@ -22,7 +22,7 @@ import com.tekbasic.config.AuthenticationService;
 import com.tekbasic.entity.User;
 import com.tekbasic.model.AuthenticationResponse;
 import com.tekbasic.model.LoginModel;
-import com.tekbasic.model.UpdatePasswordModel;
+import com.tekbasic.repo.UpdatePasswordModel;
 import com.tekbasic.service.UserService;
 
 @RestController

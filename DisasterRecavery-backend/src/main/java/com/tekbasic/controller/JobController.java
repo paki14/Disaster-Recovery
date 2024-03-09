@@ -45,7 +45,7 @@ public class JobController {
 	public void editJob(@RequestBody Job job,@PathVariable("id")int id) {
 		jobService.updateJob(job, id);
 	}
-	@DeleteMapping("/delete{id}")
+	@DeleteMapping("/delete/{id}")
 	public void deleteJob(@PathVariable("id")int id) {
 		jobService.deleteJob(id);
 	}
