@@ -9,10 +9,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tekbasic.entity.MachineOrderList;
 import com.tekbasic.entity.Status;
 import com.tekbasic.entity.TimeSheet;
 import com.tekbasic.entity.User;
 import com.tekbasic.entity.WorkOrderLists;
+import com.tekbasic.model.MachineOrderListModel;
 import com.tekbasic.model.TimeSheetModel;
 import com.tekbasic.model.WorkOrderListsModel;
 import com.tekbasic.repo.TimeSheetRepo;
@@ -33,10 +35,17 @@ public class TimeSheetServiceIMPL implements TimeSheetService {
 		List<WorkOrderLists> workList=timesheetModel.getWorkOrderList()
 				.stream().map(this::maptoOrderList).collect(Collectors.toList());
 		ts.setWorkOrderList(workList);
+		List<MachineOrderList> machineList=timesheetModel.getMachineOrderList()
+				.stream().map(this::maptoMachineList).collect(Collectors.toList());
+		ts.setMachineOrderList(machineList);
 		double workHrs=0,amount=0;
 		for (WorkOrderLists workOrderLists : workList) {
 			workHrs=workHrs+workOrderLists.getWorkHours();
 			amount=amount+workOrderLists.getTotalPay();
+		}
+		for(MachineOrderList machineOrder:machineList) {
+			workHrs=workHrs+machineOrder.getWorkHours();
+			amount=amount+machineOrder.getTotalPay();
 		}
 		ts.setStatus(Status.OPEN);
 		ts.setTotalAmount(amount);
@@ -51,7 +60,14 @@ public class TimeSheetServiceIMPL implements TimeSheetService {
 		workOrderLists.setTotalPay(workOrderListsModel.getTotalPay());
 		return workOrderLists;
 	}
-
+	
+	private MachineOrderList maptoMachineList(MachineOrderListModel machineOrderListModel) {
+		MachineOrderList machineOrderList = new MachineOrderList();
+		machineOrderList.setMachine(machineOrderListModel.getMachine());
+		machineOrderList.setTotalPay(machineOrderListModel.getTotalPay());
+		machineOrderList.setWorkHours(machineOrderListModel.getWorkHours());
+		return machineOrderList;
+	}
 	@Override
 	public List<TimeSheet> getAllTimeSheet() {
 		return timeSheetRepo.findAll();
@@ -83,5 +99,6 @@ public class TimeSheetServiceIMPL implements TimeSheetService {
 	public void updateTimeSheet(TimeSheetModel timeSheetModel, int id) {
 		timeSheetRepo.updateTimeSheet(timeSheetModel.getDate() , id);
 	}
+	
 
 }

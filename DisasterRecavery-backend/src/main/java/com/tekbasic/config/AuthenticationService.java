@@ -54,6 +54,7 @@ public class AuthenticationService {
             String jwtToken = jwtService.generateToken(user);
             return AuthenticationResponse.builder()
                     .token(jwtToken)
+                    .user(user)
                     .build();
         }else
             throw new UsernameNotFoundException("Invalid credientials");

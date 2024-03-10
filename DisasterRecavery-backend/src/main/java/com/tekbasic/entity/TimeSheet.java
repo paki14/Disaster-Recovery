@@ -43,8 +43,9 @@ public class TimeSheet {
 	private User user;
 	private LocalDate date;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "work_order_id" , referencedColumnName = "id")
 	private List<WorkOrderLists> workOrderList;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<MachineOrderList> machineOrderList;
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	private double totalHours;
